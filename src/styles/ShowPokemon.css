@@ -1,0 +1,148 @@
+.contentResult {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 40px;
+  position: relative;
+  min-height: 100vh; /* Establece una altura mínima del 100% del viewport */
+  padding-bottom: 100px; /* Espacio para la caja de botones */
+  box-sizing: border-box; /* Asegura que el padding no afecte al tamaño total */
+}
+
+
+.contentPokemons {
+    width: 875px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: white;
+    align-content: flex-start;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .cartPokemon {
+    width: 167px;
+    height: 200px;
+    display: flex;
+    margin: 40px;
+    margin-right: 0;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: stretch;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+
+  .cartPokemon:hover {
+    transform: scale(1.05);
+  }
+  
+  .imgPokemon {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+  }
+  
+  .imgPokemon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .pokemonNumber {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #555555;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  .numberLabel {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #999999;
+  }
+  
+  .namePokemon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(144, 144, 150);
+    width: 100%;
+    height: 20%;
+    font-family: 'Bacasime Antique', serif;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+  
+  .pagination {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .buttonStyle {
+    padding: 16px 32px;
+    background-color: #ff6550;
+    color: white;
+    font-family: 'Bacasime Antique', serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  .buttonStyle:hover {
+    background-color: #ff8b6f;
+  }
+  
+  .buttonStyle:active {
+    transform: scale(0.95);
+  }
+  
+  .buttonStyle:focus {
+    outline: none;
+  }
+  
+
+  .numberPage {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: black ;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+  }
