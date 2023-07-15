@@ -102,8 +102,8 @@
   }
   
   .pagination {
-    position: absolute;
-    bottom: 40px;
+    position: fixed;
+    bottom: 30px;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -120,6 +120,7 @@
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
+    
   }
   
   .buttonStyle:hover {
@@ -145,4 +146,8 @@
     font-weight: bold;
     font-size: 14px;
     color: white;
+  }
+
+  .none{
+    display: none;
   }

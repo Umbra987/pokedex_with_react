@@ -10,14 +10,19 @@ function SearchPokemon() {
 
     const checkInput = (value) =>{
       if(value === ""){
-        const containerPokemons = document.getElementById("containerPokemons");
 
-        const cartsPokemons = containerPokemons.getElementsByClassName("cartPokemon");
+        const cartsPokemons = document.getElementsByClassName("cartPokemon");
 
         for (let i = 0; i < cartsPokemons.length; i++) {
           const cartPokemon = cartsPokemons[i];
           cartPokemon.style.display = "flex";      
         }
+
+
+        const detailsPage = document.getElementsByClassName("detailsPage");
+          for(var i = 0; i < detailsPage.length ; i++){
+            detailsPage[i].classList.remove("none");
+          }
       }
     }
 
@@ -40,12 +45,22 @@ function SearchPokemon() {
         }
       }
     };
+
+    const KeyPress = (event) => {
+      if (event.key === "Enter") {
+        SearchData();
+      }
+    };
   
     useEffect(() => {
       if (pokemonData) {
-        const containerPokemons = document.getElementById("containerPokemons");
-    
-        const cartPokemons = containerPokemons.getElementsByClassName("cartPokemon");
+      
+        var detailsPage = document.getElementsByClassName("detailsPage");
+          for(var i = 0; i < detailsPage.length ; i++){
+            detailsPage[i].classList.add("none");
+          }
+
+        const cartPokemons = document.getElementsByClassName("cartPokemon");
         for (let i = 0; i < cartPokemons.length; i++) {
           const cartPokemon = cartPokemons[i];
           const namePokemon = cartPokemon.getElementsByClassName("namePokemon")[0].textContent;
@@ -55,7 +70,6 @@ function SearchPokemon() {
             cartPokemon.style.display = "flex";
           }
         }
-        console.log(pokemonData.id);
       }
     }, [pokemonData]);
     
@@ -68,6 +82,7 @@ function SearchPokemon() {
           placeholder="Ingrese el nombre del pokemon"
           id="contentSearch"
           onChange={(event) => checkInput(event.target.value)}
+          onKeyDown={KeyPress}
         ></input>
         <button id="searchButton" onClick={SearchData}>Buscar</button>
       </div>

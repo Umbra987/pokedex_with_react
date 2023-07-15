@@ -58,10 +58,10 @@ function ShowPokemon() {
   return (
     <div className="contentResult">
       <div className="contentPokemons" id="containerPokemons">
-        <div className='numberPage'>{currentPage}</div>
+        <div className='numberPage detailsPage'>{currentPage}</div>
           {printPokemons()}
       </div>
-      <div className="pagination">
+      <div className="pagination detailsPage">
         {currentPage > 1 && (
           <button onClick={handlePreviousPage} className="buttonStyle">Previous</button>
         )}
