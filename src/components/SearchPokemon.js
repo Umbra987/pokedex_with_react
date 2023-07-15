@@ -8,55 +8,57 @@ function SearchPokemon() {
       return string.charAt(0).toUpperCase() + string.slice(1);
     };
 
-    useEffect(() => {
-      const button = document.getElementById("searchButton");
-      button.addEventListener("click", async () => {
+    const checkInput = (value) =>{
+      if(value === ""){
+        const containerPokemons = document.getElementById("containerPokemons");
 
-        const input = document.getElementById("contentSearch");
+        const cartsPokemons = containerPokemons.getElementsByClassName("cartPokemon");
 
-        const pokemonName = input.value.toLowerCase().trim();
-  
-        const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-        
-        const results = await fetch(url);
-  
-        if (results.ok) {
-          const resultsJSON = await results.json();
-          setPokemonData(resultsJSON);
-        } else {
-          const responseText = await results.text();
-          if (responseText === "Not Found") {
-            alert("No se encontraron resultados");
-            input.value = ""; // Borrar el contenido del input en caso de no encontrar resultados
-          } else {
-            console.error("Error en la respuesta de la API:", responseText);
-          }
+        for (let i = 0; i < cartsPokemons.length; i++) {
+          const cartPokemon = cartsPokemons[i];
+          cartPokemon.style.display = "flex";      
         }
+      }
+    }
 
-        input.value="";
-      });
-    }, []);
+    const SearchData = async () => { 
+      const input = document.getElementById("contentSearch");
+      const pokemonName = input.value.toLowerCase().trim();
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+      const results = await fetch(url);
+      if (results.ok) {
+        const resultsJSON = await results.json();
+        setPokemonData(resultsJSON);
+      } else {
+        const responseText = await results.text();
+        if (responseText === "Not Found") {
+          alert("No se encontraron resultados");
+          input.value = ""; 
+          checkInput(input.value);
+        } else {
+          console.error("Error en la respuesta de la API:", responseText);
+        }
+      }
+    };
   
     useEffect(() => {
       if (pokemonData) {
         const containerPokemons = document.getElementById("containerPokemons");
-        containerPokemons.innerHTML = `
-          <div class="cartPokemon" key=${pokemonData.name}>
-            <div class="imgPokemon">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonData.id}.png" alt=${pokemonData.name} />
-              <div class="pokemonNumber">
-                <span class="numberLabel">Nº</span>
-                ${pokemonData.id}
-              </div>
-            </div>
-            <div class="namePokemon" id="namePokemon">
-              ${capitalize(pokemonData.name)}
-            </div>
-          </div>`; // Add closing div tags here
     
+        const cartPokemons = containerPokemons.getElementsByClassName("cartPokemon");
+        for (let i = 0; i < cartPokemons.length; i++) {
+          const cartPokemon = cartPokemons[i];
+          const namePokemon = cartPokemon.getElementsByClassName("namePokemon")[0].textContent;
+          if (namePokemon !== capitalize(pokemonData.name)) {
+            cartPokemon.style.display = "none";
+          } else {
+            cartPokemon.style.display = "flex";
+          }
+        }
         console.log(pokemonData.id);
       }
     }, [pokemonData]);
+    
     
   
     return (
@@ -65,11 +67,11 @@ function SearchPokemon() {
           type="text"
           placeholder="Ingrese el nombre del pokemon"
           id="contentSearch"
+          onChange={(event) => checkInput(event.target.value)}
         ></input>
-        <button id="searchButton">Buscar</button>
+        <button id="searchButton" onClick={SearchData}>Buscar</button>
       </div>
     );
   }
   
   export default SearchPokemon;
-  

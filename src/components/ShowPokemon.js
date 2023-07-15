@@ -29,6 +29,24 @@ function ShowPokemon() {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
+  const printPokemons = () =>{ 
+      return pokemons.map(pokemon => {
+      return (
+        <div className="cartPokemon" key={pokemon.name} >
+          <div className="imgPokemon">
+            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getPokemonIdFromUrl(pokemon.url)}.png`} alt={pokemon.name} />
+            <div className="pokemonNumber">
+              <span className="numberLabel">Nº</span>
+              {getPokemonIdFromUrl(pokemon.url)}
+            </div>
+          </div>
+          <div className="namePokemon" id="namePokemon">
+            {capitalize(pokemon.name)}
+          </div>
+        </div>
+      )})
+  }
+
   const handlePreviousPage = () => {
     setCurrentPage(prevPage => prevPage - 1);
   };
@@ -41,20 +59,7 @@ function ShowPokemon() {
     <div className="contentResult">
       <div className="contentPokemons" id="containerPokemons">
         <div className='numberPage'>{currentPage}</div>
-        {pokemons.map(pokemon => (
-          <div className="cartPokemon" key={pokemon.name}>
-            <div className="imgPokemon">
-              <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getPokemonIdFromUrl(pokemon.url)}.png`} alt={pokemon.name} />
-              <div className="pokemonNumber">
-                <span className="numberLabel">Nº</span>
-                {getPokemonIdFromUrl(pokemon.url)}
-              </div>
-            </div>
-            <div className="namePokemon" id="namePokemon">
-              {capitalize(pokemon.name)}
-            </div>
-          </div>
-        ))}
+          {printPokemons()}
       </div>
       <div className="pagination">
         {currentPage > 1 && (
@@ -68,4 +73,5 @@ function ShowPokemon() {
   );
 }
 
+export function printPokemons() {};
 export default ShowPokemon;
