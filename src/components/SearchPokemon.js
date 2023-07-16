@@ -2,36 +2,35 @@ import React, { useEffect, useState } from 'react';
 import '../styles/SearchPokemon.css';
 
 function SearchPokemon() {
-    const [pokemonData, setPokemonData] = useState(null);
-    
-    const capitalize = string => {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    };
+  const [pokemonData, setPokemonData] = useState(null);
 
-    const checkInput = (value) =>{
-      if(value === ""){
+  const capitalize = string => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
-        const cartsPokemons = document.getElementsByClassName("cartPokemon");
+  const checkInput = (value) => {
+    if (value === "") {
+      const containerPokemon = document.getElementById("containerPokemons");
+      const cartsPokemons = containerPokemon.getElementsByClassName("cartPokemon");
+      
 
-        for (let i = 0; i < cartsPokemons.length; i++) {
-          const cartPokemon = cartsPokemons[i];
-          cartPokemon.style.display = "flex";      
-        }
-
-
-        const detailsPage = document.getElementsByClassName("detailsPage");
-          for(var i = 0; i < detailsPage.length ; i++){
-            detailsPage[i].classList.remove("none");
-          }
+      for (let i = 0; i < cartsPokemons.length; i++) {
+        const cartPokemon = cartsPokemons[i];
+        cartPokemon.style.display = "flex";
       }
-    }
 
-    const SearchData = async () => { 
-      const input = document.getElementById("contentSearch");
-      const pokemonName = input.value.toLowerCase().trim();
-      if(pokemonName !== ""){
+
+    }
+  };
+
+  const SearchData = async () => {
+    const input = document.getElementById("contentSearch");
+    const pokemonName = input.value.toLowerCase().trim();
+    
+    if (pokemonName !== "") {
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
       const results = await fetch(url);
+  
       if (results.ok) {
         const resultsJSON = await results.json();
         setPokemonData(resultsJSON);
@@ -39,7 +38,7 @@ function SearchPokemon() {
         const responseText = await results.text();
         if (responseText === "Not Found") {
           alert("No se encontraron resultados");
-          input.value = ""; 
+          input.value = "";
           checkInput(input.value);
         } else {
           console.error("Error en la respuesta de la API:", responseText);
@@ -47,48 +46,47 @@ function SearchPokemon() {
       }
     }
   };
-
-    const KeyPress = (event) => {
-      if (event.key === "Enter") {
-        SearchData();
-      }
-    };
   
-    useEffect(() => {
-      if (pokemonData) {
-      
-        var detailsPage = document.getElementsByClassName("detailsPage");
-          for(var i = 0; i < detailsPage.length ; i++){
-            detailsPage[i].classList.add("none");
-          }
 
-        const cartPokemons = document.getElementsByClassName("cartPokemon");
-        for (let i = 0; i < cartPokemons.length; i++) {
-          const cartPokemon = cartPokemons[i];
-          const namePokemon = cartPokemon.getElementsByClassName("namePokemon")[0].textContent;
-          if (namePokemon !== capitalize(pokemonData.name)) {
-            cartPokemon.style.display = "none";
-          } else {
-            cartPokemon.style.display = "flex";
-          }
+  const KeyPress = (event) => {
+    if (event.key === "Enter") {
+      SearchData();
+    }
+  };
+
+  useEffect(() => {
+    if (pokemonData) {
+
+
+      const containerPokemon = document.getElementById("containerPokemons");
+      const cartsPokemons = containerPokemon.getElementsByClassName("cartPokemon");
+      const namePokemon = capitalize(pokemonData.name);
+
+
+      for (let i = 0; i < cartsPokemons.length; i++) {
+        const cartPokemon = cartsPokemons[i];
+        const name = cartPokemon.getElementsByClassName("namePokemon")[0].textContent;
+        if (name !== namePokemon) {
+          cartPokemon.style.display = "none";
+        } else {
+          cartPokemon.style.display = "flex";
         }
       }
-    }, [pokemonData]);
-    
-    
-  
-    return (
-      <div className="containerSearch">
-        <input
-          type="text"
-          placeholder="Ingrese el nombre del pokemon"
-          id="contentSearch"
-          onChange={(event) => checkInput(event.target.value)}
-          onKeyDown={KeyPress}
-        ></input>
-        <button id="searchButton" onClick={SearchData}>Buscar</button>
-      </div>
-    );
-  }
-  
-  export default SearchPokemon;
+    }
+  }, [pokemonData]);
+
+  return (
+    <div className="containerSearch">
+      <input
+        type="text"
+        placeholder="Ingrese el nombre del pokemon"
+        id="contentSearch"
+        onChange={(event) => checkInput(event.target.value)}
+        onKeyDown={KeyPress}
+      ></input>
+      <button id="searchButton" onClick={SearchData}>Buscar</button>
+    </div>
+  );
+}
+
+export default SearchPokemon;
