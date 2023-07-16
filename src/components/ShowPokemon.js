@@ -106,7 +106,7 @@ function ShowPokemon() {
               </div>
             
 
-            <div className='sliderPokemon'>
+            <div className='appearancePokemon'>
               <h2>Normal</h2>
               <img src={selectedPokemon.sprites.front_default} alt={selectedPokemon.name}  />
               <img src={selectedPokemon.sprites.back_default} alt={selectedPokemon.name}  />

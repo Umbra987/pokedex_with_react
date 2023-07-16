@@ -166,12 +166,16 @@
   
 }
 
+.headerInfoPokemon h3{
+  margin-right: 10px;
+}
+
 .namePokemonModal{
   font-size: 40px;
   
 }
 
-.sliderPokemon {
+.appearancePokemon {
   width: 200px;
   border: 1px solid black;
   border-left: 0;
@@ -182,15 +186,14 @@
   animation: slideInLeftToRight 2s forwards;
 }
 
-.sliderPokemon img{
+.appearancePokemon img{
   height: auto;
   object-fit: cover;
 }
 
-.sliderPokemon h2{
+.appearancePokemon h2{
   margin-left: 10px;
   margin-top: 10px;
-
 }
 
 @keyframes slideInLeftToRight {
