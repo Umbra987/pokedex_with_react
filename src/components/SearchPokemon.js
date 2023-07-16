@@ -29,6 +29,7 @@ function SearchPokemon() {
     const SearchData = async () => { 
       const input = document.getElementById("contentSearch");
       const pokemonName = input.value.toLowerCase().trim();
+      if(pokemonName !== ""){
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
       const results = await fetch(url);
       if (results.ok) {
@@ -44,7 +45,8 @@ function SearchPokemon() {
           console.error("Error en la respuesta de la API:", responseText);
         }
       }
-    };
+    }
+  };
 
     const KeyPress = (event) => {
       if (event.key === "Enter") {
