@@ -5,104 +5,137 @@
   justify-content: center;
   margin-top: 40px;
   position: relative;
-  min-height: 100vh; /* Establece una altura mínima del 100% del viewport */
-  padding-bottom: 100px; /* Espacio para la caja de botones */
-  box-sizing: border-box; /* Asegura que el padding no afecte al tamaño total */
+  min-height: 100vh;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+.contentPokemons {
+  width: 875px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: white;
+  align-content: flex-start;
+  border-radius: 10px;
+  position: relative;
+}
+
+.cartPokemon {
+  width: 167px;
+  height: 200px;
+  display: flex;
+  margin: 40px;
+  margin-right: 0;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: stretch;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s;
+}
+
+.frontSide,
+.backSide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+}
+
+ .imgPokemon {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+ .imgPokemon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.frontSide .pokemonNumber {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #555555;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.frontSide .numberLabel {
+  margin-right: 5px;
+  font-size: 14px;
+  color: #999999;
+}
+
+.backSide {
+  background-color: rgb(144, 144, 150);
+  font-family: 'Bacasime Antique', serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  border-radius: 20px;
+  padding: 5px;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  display: none;
+}
+
+.cartPokemon:hover {
+  transform: rotateY(180deg);
+}
+
+.cartPokemon:hover .frontSide {
+  display: none;
+}
+
+.cartPokemon:hover .backSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.typePokemonCard {
+  display: flex;
+  padding: 5px 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.typePokemonCard .typePokemon{
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.typePokemon + .typePokemon{
+  margin: -20px;
 }
 
 
-.contentPokemons {
-    width: 875px;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    background-color: white;
-    align-content: flex-start;
-    border-radius: 10px;
-    position: relative;
-  }
-  
-  .cartPokemon {
-    width: 167px;
-    height: 200px;
-    display: flex;
-    margin: 40px;
-    margin-right: 0;
-    flex-flow: column wrap;
-    align-items: center;
-    justify-content: center;
-    align-content: stretch;
-    margin-bottom: 5px;
-    border: 1px solid black;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    cursor: pointer;
-    background-color: #f2f2f2;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    position: relative;
-  }
-
-  .cartPokemon:hover {
-    transform: scale(1.05);
-  }
-  
-  .imgPokemon {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 80%;
-  }
-  
-  .imgPokemon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  
-  .pokemonNumber {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: rgba(255, 255, 255, 1);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 14px;
-    color: #555555;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  }
-  
-  .numberLabel {
-    margin-right: 5px;
-    font-size: 14px;
-    color: #999999;
-  }
-  
-  .namePokemon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(144, 144, 150);
-    width: 100%;
-    height: 20%;
-    font-family: 'Bacasime Antique', serif;
-    font-size: 20px;
-    font-weight: bold;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    color: white;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    overflow: hidden;
-    word-wrap: break-word;
-  }
-  
-
-
-  .none{
-    display: none;
-  }
+.none {
+  display: none;
+}
