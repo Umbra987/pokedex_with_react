@@ -64,10 +64,10 @@ function ShowPokemon() {
   };
 
   useEffect(() => {
-    const fetchPokemonsTypes = async () => {
+    const fetchPokemonsTypes = async (ArrayPokemons) => {
       const typesData = {};
 
-      for (const pokemon of pokemons) {
+      for (const pokemon of ArrayPokemons) {
         const types = await fetchTypesPokemons(pokemon.name);
         typesData[pokemon.name] = types;
       }
@@ -75,23 +75,23 @@ function ShowPokemon() {
       setPokemonTypes(typesData);
     };
 
-    fetchPokemonsTypes();
+    fetchPokemonsTypes(pokemons);
   }, [pokemons]);
 
-  const printPokemons = () => {
-    return pokemons.map(pokemon => {
+  const printPokemons = (ArrayPokemons) => {
+    return ArrayPokemons.map(pokemon => {
       const types = pokemonTypes[pokemon.name] || [];
   
       return (
-        <div className="cartPokemon  flip" key={pokemon.name} onClick={() => handlePokemonClick(pokemon.name)}>
-          <div className="imgPokemon frontSide">
+        <div className="cartPokemon" key={pokemon.name} onClick={() => handlePokemonClick(pokemon.name)}>
+          <div className="frontSide">
             <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getPokemonIdFromUrl(pokemon.url)}.png`} alt={pokemon.name} />
             <div className="pokemonNumber">
               <span className="numberLabel">Nº</span>
               {getPokemonIdFromUrl(pokemon.url)}
             </div>
           </div>
-          <div className="backSide namePokemon typePokemonCard">
+          <div className="backSide">
             {capitalize(pokemon.name)}
             {typesPokemon(types)}
           </div>
@@ -104,7 +104,7 @@ function ShowPokemon() {
   return (
     <div className="contentResult">
       <div className="contentPokemons" id="containerPokemons">
-        {printPokemons()}
+        {printPokemons(pokemons)}
       </div>
       <PokemonModal Pokemon={selectedPokemon} handleClosePopup={handleClosePopup} />
     </div>
