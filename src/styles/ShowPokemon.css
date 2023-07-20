@@ -124,7 +124,7 @@
   letter-spacing: 2px;
 }
 
-.typePokemon + .typePokemon{
+.backSide .typePokemon + .typePokemon{
   margin: -20px;
 }
 

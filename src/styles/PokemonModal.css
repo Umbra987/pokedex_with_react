@@ -65,8 +65,6 @@
     
   }
 
-
-
 .containerMoves {
   display: flex;
   flex-direction: column;
@@ -129,8 +127,8 @@
 }
 
 .physical{
-  background: rgb(241,23,8);
-  background: linear-gradient(90deg, rgba(241,23,8,1) 36%, rgba(121,11,9,1) 58%, rgba(215,255,0,1) 100%);
+  background: rgb(161,76,76);
+  background: linear-gradient(90deg, rgba(161,76,76,1) 17%, rgba(210,159,85,1) 89%);
   color: white;
 }
 

@@ -92,7 +92,7 @@ function ShowPokemon() {
             </div>
           </div>
           <div className="backSide">
-            {capitalize(pokemon.name)}
+            <div className='namePokemon'>{capitalize(pokemon.name)}</div>
             {typesPokemon(types)}
           </div>
         </div>

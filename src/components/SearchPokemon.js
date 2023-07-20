@@ -47,13 +47,6 @@ function SearchPokemon() {
     }
   };
   
-
-  const KeyPress = (event) => {
-    if (event.key === "Enter") {
-      SearchData();
-    }
-  };
-
   useEffect(() => {
     if (pokemonData) {
 
@@ -82,7 +75,6 @@ function SearchPokemon() {
         placeholder="Ingrese el nombre del pokemon"
         id="contentSearch"
         onChange={(event) => checkInput(event.target.value)}
-        onKeyDown={KeyPress}
       ></input>
       <button id="searchButton" onClick={SearchData}>Buscar</button>
     </div>
