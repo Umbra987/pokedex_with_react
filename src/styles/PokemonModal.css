@@ -13,9 +13,7 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  padding-bottom: 10px;
-  color: white;
-  background-color: #000000;
+  margin-bottom: 10px;
 }
 
 .headerInfoPokemon h3{
@@ -33,6 +31,36 @@
   align-items: center;
   flex-direction: column;
   position: relative;
+  min-width: 100px;
+}
+
+@media (max-width:805px) {
+
+  .appearancePokemon{
+    width: 100%;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+  }
+
+  .appearancePokemon h2{
+    width: 100%;
+    font-size: 30px;
+  }
+
+  .appearancePokemon img{
+    max-width: 300px ;
+    object-fit: cover;
+  }
+
+  .appearancePokemon img + img {
+    display: inline-flex;
+  }
+  
+  .containerMoves{
+    width: 100%;
+  }
+
 }
 
 .appearancePokemon img{
@@ -57,8 +85,9 @@
 
 .containerRealisticImgs{
   display: flex;
-  flex: 1;
+  flex: 1 1 600px;
   height: 440px;
+  max-height: 440px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -67,6 +96,7 @@
 .containerRealisticImgs img{
   width: 50%;
   height: 100%;
+  min-width: 300px;
   object-fit: contain;
   
 }
@@ -77,10 +107,10 @@
   padding-left: 5px;
   padding-top: 5px;
   gap: 5px;
-  width: 400px;
+  flex: 1 1 400px;
   max-height: 440px;
   overflow-y: auto; 
-  background-color: rgb(202, 140, 70);
+  background-color: black;
 }
 
 
@@ -98,6 +128,12 @@
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 5px;
+}
+
+@media (max-width: 960px) {
+  .movePokemon{
+    width: 95%;
+  }
 }
 
 .movePokemon h3{
@@ -118,70 +154,143 @@
   flex-direction: column;
   align-items: flex-start;
   margin-top: 5px; 
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .movePokemon p {
-  font-size: 13px;
+  font-size: 90% ;
   margin: 0;
   margin-bottom: 5px; 
 }
 
-
-.special{
-background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 49%, rgba(0,212,255,1) 91%);
-color: white;
+.special::after{
+  content: url("../imgs/special.png");
 }
 
-.physical{
-background: rgb(161,76,76);
-background: linear-gradient(90deg, rgba(161,76,76,1) 17%, rgba(210,159,85,1) 89%);
-color: white;
+.physical::after{
+  content: url("../imgs/physical.png");
 }
 
-.status{
-background: rgb(37,37,37);
-background: radial-gradient(circle, rgba(37,37,37,1) 0%, rgba(116,113,113,1) 77%);
-color: white;
+.status::after{
+  content: url("../imgs/status.png");
 }
 
 
 .containerMoves::-webkit-scrollbar {
-width: 6px; 
+  width: 6px; 
 }
 
 .containerMoves::-webkit-scrollbar-thumb {
-background-color: #000000; 
-border-radius: 4px; 
+  background-color: #3f3d3d21; 
+  border-radius: 4px; 
 }
 
 .containerMoves::-webkit-scrollbar-thumb:hover {
-background-color: #555; 
+  background-color: #555; 
 }
 
 .containerMoves::-webkit-scrollbar-track {
-background-color: #f2f2f2; 
-border-radius: 4px;
+  background-color: #f2f2f2; 
+  border-radius: 4px;
 }
 
 
 .containerMoves::-webkit-scrollbar-corner {
-background: transparent;
+  background: transparent;
 }
 
 .movePokemon:last-child {
-margin-bottom: 0; 
+  margin-bottom: 0; 
 }
 
 .closeModal {
-position: absolute;
-top: 5px;
-right: 20px;
-font-size: 20px;
-cursor: pointer;
-color: white;
+  position: absolute;
+  right: 5px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 body.modal-open {
-overflow: hidden;
+  overflow: hidden;
+}
+
+
+.containerLocationAreaEncounters{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid black;
+  position: relative;
+  overflow: hidden
+}
+
+.titleAreas{
+  width: 100%;
+  display: flex ;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+  background-color: black;
+  padding: 15px;
+}
+
+.imgTitleAreas{
+  width: 50px;
+  height: 50px;
+  background-image: url("../imgs/iconMap.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 5px;
+}
+
+.areaEncounterPokemon{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding: 5px;
+  
+}
+
+.areaEncounterPokemon + .areaEncounterPokemon{
+  border-top: 1px solid black;
+}
+
+.unknownLocation,.areaEncounterPokemon p{
+  padding: 10px;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.containerDebilities{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background-color: rgb(228, 228, 169);
+  border: 1px solid black;
+}
+
+.containerDebilities h3{
+  width: 100%;
+  text-align: left;
+  color: white;
+  background-color: black;
+  padding: 10px;
+  display: block;
+  font-size: 30px;
+}
+
+.containerDebilities .typePokemon{
+  margin-right: 20px;
+  padding: 10px;
+  font-size: 15px;
 }

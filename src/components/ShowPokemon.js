@@ -6,6 +6,7 @@ import PokemonModal from './PokemonModal';
 function ShowPokemon() {
   const [pokemons, setPokemons] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedPokemonId, setSelectedPokemonId] = useState(null);
   const [pokemonTypes, setPokemonTypes] = useState({});
 
   useEffect(() => {
@@ -49,15 +50,18 @@ function ShowPokemon() {
     ));
   };
 
+  
   const handlePokemonClick = async (pokemonName) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     const response = await fetch(url);
     if (response.ok) {
       const pokemonData = await response.json();
-      console.log(pokemonData);
       setSelectedPokemon(pokemonData);
+      setSelectedPokemonId(pokemonData.id);
     }
   };
+
+
 
   const handleClosePopup = () => {
     setSelectedPokemon(null);
@@ -100,13 +104,12 @@ function ShowPokemon() {
     });
   };
   
-
   return (
     <div className="contentResult">
       <div className="contentPokemons" id="containerPokemons">
         {printPokemons(pokemons)}
       </div>
-      <PokemonModal Pokemon={selectedPokemon} handleClosePopup={handleClosePopup} />
+      <PokemonModal Pokemon={selectedPokemon} handleClosePopup={handleClosePopup} pokemonId={selectedPokemonId}/>
     </div>
   );
 }

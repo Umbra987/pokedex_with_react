@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import Modal from 'react-modal';
+import PokemonSpawnLocations from './PokemonSpawnLocations.js';
+import CalculateWeaknesses  from './CalculateWeaknesses.js';
 import "../styles/PokemonModal.css"
 
-function PokemonModal({ Pokemon, handleClosePopup }) {
+function PokemonModal({ Pokemon, handleClosePopup , pokemonId}) {
+
   const capitalize = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
@@ -48,7 +51,7 @@ function PokemonModal({ Pokemon, handleClosePopup }) {
       console.error(error);
     }
   };
-  
+
 
   useEffect(() => {
     if (Pokemon && Pokemon.moves) {
@@ -57,6 +60,7 @@ function PokemonModal({ Pokemon, handleClosePopup }) {
         getMoveInfo(move.move.url);
       });
     }
+   
   }, [Pokemon]);
 
   return (
@@ -69,7 +73,7 @@ function PokemonModal({ Pokemon, handleClosePopup }) {
       {Pokemon && (
         <div className='containerInfoPokemon'>
           <span className='closeModal' onClick={handleClosePopup}>X</span>
-
+          
           <div className='headerInfoPokemon'>
             <h3 className='namePokemonModal'>{capitalize(Pokemon.name)}</h3>
             {typesPokemon(Pokemon.types)}
@@ -93,9 +97,9 @@ function PokemonModal({ Pokemon, handleClosePopup }) {
             {moveInfo.length > 0 ? (
               <>
                 {moveInfo.map((move, index) => (
-                  <div key={index} className={`movePokemon ${move.damageClass}`}>
+                  <div key={index} className={`movePokemon `}>
                     <h3>{capitalize(move.name)}</h3>
-                    <p>type: {move.damageClass}</p>
+                    <p className={move.damageClass}>type: {move.damageClass} </p>
                     <p>{move.accuracy !== null && ` Accuracy: ${move.accuracy} Power: ${move.power}  PP: ${move.pp}`}</p>
                     <p>{getDescriptionWithPercentage(move.description,move.effect_chance)}</p>
                   </div>
@@ -105,7 +109,17 @@ function PokemonModal({ Pokemon, handleClosePopup }) {
               <p>No moves available</p>
             )}
           </div>
+          <div className='containerLocationAreaEncounters'>
+            <div className='titleAreas'>Ubication<div className='imgTitleAreas'></div>
+            </div>
+            <PokemonSpawnLocations pokemonId={pokemonId} />
+          </div>
+          <div className='containerDebilities'>
+            <h3>Debilities :</h3>
+            <CalculateWeaknesses typeInfo={Pokemon.types} />
+          </div>
         </div>
+        
       )}
     </Modal>
   );
