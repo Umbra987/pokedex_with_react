@@ -274,7 +274,6 @@ body.modal-open {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 5px;
   background-color: rgb(228, 228, 169);
   border: 1px solid black;
 }
@@ -293,4 +292,15 @@ body.modal-open {
   margin-right: 20px;
   padding: 10px;
   font-size: 15px;
+}
+
+.containerEvolution{
+  display: flex;
+  padding: 30px;
+  flex-flow: wrap row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid black;
+  border-top: 0;
 }

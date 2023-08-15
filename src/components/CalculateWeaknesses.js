@@ -1,5 +1,9 @@
 function CalculateWeaknesses({ typeInfo }) {
 
+  const capitalize = string => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
     const typesDebilities = {
       normal: ["fighting"],
       fighting: ["flying", "psychic", "fairy"],
@@ -28,11 +32,19 @@ function CalculateWeaknesses({ typeInfo }) {
     
     const uniqueWeaknesses = [...new Set(weaknesses)];
 
-      return uniqueWeaknesses.map((debilitie, index) => (
-        <div key={index} className={`typePokemon ${debilitie}`}>
-          {debilitie}
+      return (
+        
+        <div className='containerDebilities'>
+          <h3>Debilities :</h3>
+          {uniqueWeaknesses.map((debilitie, index) => (
+            <div key={index} className={`typePokemon ${debilitie}`}>
+              {capitalize(debilitie)}
+            </div>
+              )
+            )
+          }
         </div>
-      ));
+      );
   }
 
 export default CalculateWeaknesses;  

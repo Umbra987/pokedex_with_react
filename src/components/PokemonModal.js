@@ -1,6 +1,7 @@
 import React,{ useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import PokemonSpawnLocations from './PokemonSpawnLocations.js';
+import GetEvolutions from './GetEvolutions.js';
 import CalculateWeaknesses  from './CalculateWeaknesses.js';
 import "../styles/PokemonModal.css"
 
@@ -13,14 +14,14 @@ function PokemonModal({ Pokemon, handleClosePopup , pokemonId}) {
   const typesPokemon = (types) => {
     return types.map((type, index) => (
       <div key={index} className={`typePokemon ${type.type.name}`}>
-        {type.type.name}
+        {capitalize(type.type.name)}
       </div>
     ));
   };
 
   const getDescriptionWithPercentage = (description, chance) => {
     if (description.includes("$effect_chance")) {
-      return description.replace("$effect_chance", chance !== undefined ? `${chance}%` : "");
+      return description.replace("$effect_chance", chance !== undefined ? `${chance}` : "");
     }
     return description;
   };
@@ -38,14 +39,15 @@ function PokemonModal({ Pokemon, handleClosePopup , pokemonId}) {
       const data = await response.json();
   
       const shortEffect = data.effect_entries[0]?.short_effect || "No description available";
-  
+
       setMoveInfo(prevState => [...prevState, {
         name: data.name,
         accuracy: data.accuracy,
         damageClass: data.damage_class?.name || "Unknown",
         power: data.power || "Unknown",
         pp: data.pp || "Unknown",
-        description: shortEffect
+        description: shortEffect,
+        effect_chance: data.effect_chance
       }]);
     } catch (error) {
       console.error(error);
@@ -95,16 +97,14 @@ function PokemonModal({ Pokemon, handleClosePopup , pokemonId}) {
 
           <div className='containerMoves'>
             {moveInfo.length > 0 ? (
-              <>
-                {moveInfo.map((move, index) => (
+                moveInfo.map((move, index) => (
                   <div key={index} className={`movePokemon `}>
                     <h3>{capitalize(move.name)}</h3>
-                    <p className={move.damageClass}>type: {move.damageClass} </p>
+                    <p className={move.damageClass}>Type: {move.damageClass} </p>
                     <p>{move.accuracy !== null && ` Accuracy: ${move.accuracy} Power: ${move.power}  PP: ${move.pp}`}</p>
                     <p>{getDescriptionWithPercentage(move.description,move.effect_chance)}</p>
                   </div>
-                ))}
-              </>
+                ))
             ) : (
               <p>No moves available</p>
             )}
@@ -114,10 +114,8 @@ function PokemonModal({ Pokemon, handleClosePopup , pokemonId}) {
             </div>
             <PokemonSpawnLocations pokemonId={pokemonId} />
           </div>
-          <div className='containerDebilities'>
-            <h3>Debilities :</h3>
             <CalculateWeaknesses typeInfo={Pokemon.types} />
-          </div>
+            <GetEvolutions pokemonName={Pokemon.name}/>
         </div>
         
       )}

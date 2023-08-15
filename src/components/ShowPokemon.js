@@ -45,7 +45,7 @@ function ShowPokemon() {
   const typesPokemon = (types) => {
     return types.map((type, index) => (
       <div key={index} className={`typePokemon ${type.type.name}`}>
-        {type.type.name}
+        {capitalize(type.type.name)}
       </div>
     ));
   };
