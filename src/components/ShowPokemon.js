@@ -6,7 +6,6 @@ import PokemonModal from './PokemonModal';
 function ShowPokemon() {
   const [pokemons, setPokemons] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const [selectedPokemonId, setSelectedPokemonId] = useState(null);
   const [pokemonTypes, setPokemonTypes] = useState({});
 
   useEffect(() => {
@@ -57,11 +56,8 @@ function ShowPokemon() {
     if (response.ok) {
       const pokemonData = await response.json();
       setSelectedPokemon(pokemonData);
-      setSelectedPokemonId(pokemonData.id);
     }
   };
-
-
 
   const handleClosePopup = () => {
     setSelectedPokemon(null);
@@ -109,7 +105,7 @@ function ShowPokemon() {
       <div className="contentPokemons" id="containerPokemons">
         {printPokemons(pokemons)}
       </div>
-      <PokemonModal Pokemon={selectedPokemon} handleClosePopup={handleClosePopup} pokemonId={selectedPokemonId}/>
+      <PokemonModal Pokemon={selectedPokemon} setPokemon={setSelectedPokemon} handleClosePopup={handleClosePopup} />
     </div>
   );
 }

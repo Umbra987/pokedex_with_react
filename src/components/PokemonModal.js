@@ -5,7 +5,21 @@ import GetEvolutions from './GetEvolutions.js';
 import CalculateWeaknesses  from './CalculateWeaknesses.js';
 import "../styles/PokemonModal.css"
 
-function PokemonModal({ Pokemon, handleClosePopup , pokemonId}) {
+function PokemonModal({ Pokemon, setPokemon , handleClosePopup }) {
+
+  const [modalScroll, setModalScroll] = useState([0, 0]);
+
+
+
+  useEffect(() => {
+    if (Pokemon !== null) {
+      const modalElement = document.getElementById("modalPokemon");
+      if (modalElement) {
+        modalElement.scrollTo(...modalScroll);
+      }
+    }
+  }, [modalScroll, Pokemon]);
+  
 
   const capitalize = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -66,9 +80,13 @@ function PokemonModal({ Pokemon, handleClosePopup , pokemonId}) {
   }, [Pokemon]);
 
   return (
-    <Modal 
+    <Modal
+    id='modalPokemon' 
     isOpen={Pokemon !== null} 
-    onRequestClose={handleClosePopup} 
+    onRequestClose={() => {
+      handleClosePopup();
+      setModalScroll([0, 0]);
+    }}
     contentLabel="Pokemon Details"
     bodyOpenClassName="modal-open"
     >
@@ -112,10 +130,10 @@ function PokemonModal({ Pokemon, handleClosePopup , pokemonId}) {
           <div className='containerLocationAreaEncounters'>
             <div className='titleAreas'>Ubication<div className='imgTitleAreas'></div>
             </div>
-            <PokemonSpawnLocations pokemonId={pokemonId} />
+            <PokemonSpawnLocations pokemonId={Pokemon.id} />
           </div>
             <CalculateWeaknesses typeInfo={Pokemon.types} />
-            <GetEvolutions pokemonName={Pokemon.name}/>
+            <GetEvolutions Pokemon={Pokemon} setPokemon={setPokemon}/>
         </div>
         
       )}

@@ -33,7 +33,14 @@ function SearchPokemon() {
   
       if (results.ok) {
         const resultsJSON = await results.json();
-        setPokemonData(resultsJSON);
+        if(resultsJSON.id > 1010){
+          alert("No se encontraron resultados");
+          input.value = "";
+          checkInput(input.value);
+        }
+        else{
+          setPokemonData(resultsJSON);
+        }
       } else {
         const responseText = await results.text();
         if (responseText === "Not Found") {
@@ -72,11 +79,11 @@ function SearchPokemon() {
     <div className="containerSearch">
       <input
         type="text"
-        placeholder="Ingrese el nombre del pokemon"
+        placeholder="Enter the name of the pokemon"
         id="contentSearch"
         onChange={(event) => checkInput(event.target.value)}
       ></input>
-      <button id="searchButton" onClick={SearchData}>Buscar</button>
+      <button id="searchButton" onClick={SearchData}><span className="material-symbols-outlined">search</span></button>
     </div>
   );
 }
