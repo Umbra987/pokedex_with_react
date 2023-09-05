@@ -29,6 +29,7 @@
     padding: 5px;
     border: 5px outset #ff6550;
     background-color: white;
+    color: rgb(90, 88, 88);
 }
 
 .containerSearch button:hover{
