@@ -19,6 +19,12 @@
     font-weight: 600;
 }
 
+@media (max-width: 450px) {
+    .containerSearch input{
+        font-size: 17px;
+    }
+}
+
 .containerSearch input:focus{
     outline: 0;
 }

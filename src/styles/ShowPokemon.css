@@ -1,7 +1,7 @@
 .contentResult {
   width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   margin-top: 40px;
   position: relative;
@@ -15,24 +15,24 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
+  padding-top: 40px;
   background-color: white;
   align-content: flex-start;
   justify-content: center;
   border-radius: 10px;
   position: relative;
+  gap: 40px
 }
 
 .cartPokemon {
   width: 167px;
   height: 200px;
   display: flex;
-  margin: 40px;
   margin-right: 0;
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
   align-content: stretch;
-  margin-bottom: 5px;
   border: 1px solid black;
   border-radius: 20px;
   cursor: pointer;
