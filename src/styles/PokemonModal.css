@@ -7,7 +7,6 @@
 
 
 .headerInfoPokemon{
-
   display: flex;
   width: 100%;
   height: 50px;
@@ -15,7 +14,6 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  z-index: 10;
 }
 
 
@@ -25,6 +23,47 @@
 
 .namePokemonModal{
   font-size: 40px;
+}
+
+@media (max-width:400px) {
+  .headerInfoPokemon h3{
+    margin-left: -20px;
+    margin-top: 5px;
+    font-size: 20px;
+  }
+
+  .headerInfoPokemon .typePokemon{
+    width: 45px;
+    font-size: 10px; /*pendiente */
+  }
+
+  .appearancePokemon h2{
+    width: 100%;
+    font-size: 20px;
+  }
+
+  .containerRealisticImgs{
+    max-height: 880px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .movePokemon{
+    max-width: 90%;
+  }
+
+  .containerEvolution{
+    flex-direction: column;
+  }
+
+  .areaEncounterPokemon{
+    max-width: 300px;
+  }
+  
+  .closeModal{
+    top: 15px;
+  }
 }
 
 .appearancePokemon {
@@ -59,6 +98,7 @@
   .appearancePokemon img + img {
     display: inline-flex;
   }
+  
   
   .containerMoves{
     width: 100%;
@@ -99,9 +139,7 @@
 .containerRealisticImgs img{
   width: 50%;
   height: 100%;
-  min-width: 300px;
   object-fit: contain;
-  
 }
 
 .containerMoves {
@@ -140,23 +178,16 @@
 }
 
 .movePokemon h3{
+  font-size: 100%;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   margin-bottom: 5px;
-}
-
-.movePokemon img {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  width: 30px;
-  margin-right: 5px;
 }
 
 .movePokemon {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 5px; 
+  margin-top: 5px;
   background-color: rgba(255, 255, 255, 1);
 }
 
@@ -211,6 +242,7 @@
   right: 5px;
   font-size: 20px;
   cursor: pointer;
+  z-index: 20;
 }
 
 body.modal-open {
@@ -224,8 +256,6 @@ body.modal-open {
   flex-direction: column;
   width: 100%;
   border: 1px solid black;
-  position: relative;
-  overflow: hidden
 }
 
 .titleAreas{
@@ -239,6 +269,8 @@ body.modal-open {
   color: white;
   background-color: black;
   padding: 15px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .imgTitleAreas{
@@ -254,10 +286,11 @@ body.modal-open {
 .areaEncounterPokemon{
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
   padding: 5px;
-  
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .areaEncounterPokemon + .areaEncounterPokemon{
@@ -300,7 +333,7 @@ body.modal-open {
 .containerEvolution{
   display: flex;
   padding: 35px;
-  flex-flow: wrap row;
+  flex-wrap: wrap;
   width: 100%;
   align-items: center;
   justify-content: space-evenly;
